@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Ekampreet Kaur</title>
+    <link rel="stylesheet" href="/style/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Play&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/ScrollTrigger.js"></script>
+    <script src="https://unpkg.com/gsap@3.9.2/dist/gsap.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/your-font-awesome-kit.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/spinner.js"></script>
+  </head>
+  <body>
+    <!-- header -->
+    <nav class="navbar">
+      <div class="navbar_container">
+        <div class="logo"><img src="images/logo.svg" alt="logo" /></div>
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav-list" id="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects.html">Projects</a></li>
+          <li><a href="case-study.html">Case Study</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!--  -->
+    <div class="project-container_section" id="projects">
+      <h2 class="">SEE MY PROJECTS!</h2>
+      <div
+        class="project"
+        onclick="showLightbox('path-to-airpods-image.png', 'AirPods')"
+      >
+        <img src="images/airpods.png" alt="AirPods" />
+        <p>AIRPODS</p>
+      </div>
+      <div
+        class="project"
+        onclick="showLightbox('path-to-makeup-image.png', 'Make Up')"
+      >
+        <img src="images/makeup.png" alt="Make Up" />
+        <p>MAKE UP</p>
+      </div>
+
+      <div
+        class="project"
+        onclick="showLightbox('path-to-billybeer.png', 'BillyBeer')"
+      >
+        <img src="images/billybeer.png" alt="BillyBeer" />
+        <p>BILLY BEER</p>
+      </div>
+      <div
+        class="project"
+        onclick="showLightbox('path-to-sports.png', 'Sports')"
+      >
+        <img src="images/sports.png" alt="Sports" />
+        <p>SPORTS</p>
+      </div>
+    </div>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+      <span class="close" onclick="closeLightbox()">&times;</span>
+      <img class="lightbox-content" id="lightbox-image" />
+      <div id="lightbox-caption"></div>
+    </div>
+    <!-- spinner -->
+    <script>
+      function clickBtn(e) {
+        e.preventDefault();
+        window.location.href = "spinner.html";
+      }
+    </script>
+
+    <!-- footer -->
+    <div class="footer_project">
+      <p>ALL RIGHTS RESERVED @2024-EKAMPREET KAUR.<br />THANKS!</p>
+    </div>
+  </body>
+</html>
