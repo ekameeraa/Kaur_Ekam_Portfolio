@@ -1,0 +1,51 @@
+@import "../abstracts/_variables";
+
+#case-study-body {
+  background-color: $casestudy_bg;
+}
+.casestudy_heading {
+  background-color: $primary-color;
+  color: $bar-color;
+  font-size: 45px;
+  text-align: center;
+  font-family: $heading-font-family;
+  padding: 4px 4px;
+}
+
+.projects-steps__item {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-self: center;
+  align-items: center;
+}
+.projects-steps__item > div {
+  padding: 3rem;
+}
+.goalinfo {
+  font-size: 30px;
+}
+.goalinfo h2 {
+  color: $accent-color;
+  font-family: $heading-font-family;
+}
+.goalinfo p {
+  color: $bar-color;
+  font-family: $body-font-family;
+}
+.goalinfo__image {
+  min-width: 450px;
+  height: auto;
+  object-fit: cover;
+}
+.goalinfo__image-container {
+  width: 100%;
+}
+.projects-steps__item {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 768px) {
+  .projects-steps__item {
+    flex-wrap: wrap;
+  }
+}
