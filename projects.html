@@ -53,11 +53,12 @@
       <h2 class="">SEE MY PROJECTS!</h2>
       <div
         class="project"
-        onclick="showLightbox('path-to-airpods-image.png', 'AirPods')"
+        onclick="showLightbox('path-to-airpods-image.png', 'Additional information about AirPods')"
       >
         <img src="images/airpods.png" alt="AirPods" />
         <p>AIRPODS</p>
       </div>
+
       <div
         class="project"
         onclick="showLightbox('path-to-makeup-image.png', 'Make Up')"
@@ -86,7 +87,16 @@
       <span class="close" onclick="closeLightbox()">&times;</span>
       <img class="lightbox-content" id="lightbox-image" />
       <div id="lightbox-caption"></div>
+      <div id="lightbox-info"></div>
     </div>
+
+    <!-- <div id="lightbox" class="lightbox">
+      <span class="close" onclick="closeLightbox()">&times;</span>
+      <img class="lightbox-content" id="lightbox-image" />
+      <div id="lightbox-caption"></div>
+      <div id="lightbox-info"></div> 
+    </div> -->
+
     <!-- spinner -->
     <script>
       function clickBtn(e) {

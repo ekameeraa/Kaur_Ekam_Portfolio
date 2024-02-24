@@ -18,6 +18,10 @@
 }
 
 // about
+.about {
+  flex-wrap: wrap;
+}
+
 #about {
   background-color: $secondary-color;
   color: #fff;
