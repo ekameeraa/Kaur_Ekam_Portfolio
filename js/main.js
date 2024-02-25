@@ -28,3 +28,67 @@ function closeLightbox() {
   lightbox.style.display = "none";
 }
 
+// contact form ajax request
+(() => {
+  document.addEventListener("DOMContentLoaded", (event) => {
+    //declare variables
+    const form = document.querySelector("#feedback_form");
+
+    const feedBack = document.querySelector("#feedback");
+
+    function submitEnqueryForm(event) {
+      event.preventDefault();
+
+      const thisForm = event.currentTarget;
+
+      const url = "submit_enquery.php";
+      const formData =
+        "lname=" +
+        thisForm.elements.lname.value +
+        "&fname=" +
+        thisForm.elements.fname.value +
+        "&email=" +
+        thisForm.elements.email.value +
+        "&country=" +
+        thisForm.elements.country.value +
+        "&message=" +
+        thisForm.elements.message.value;
+
+      console.log(formData);
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((responseText) => {
+          console.log(responseText);
+          feedBack.innerHTML = "";
+
+          if (responseText.errors) {
+            responseText.errors.forEach((error) => {
+              const errorElement = document.createElement("p");
+              errorElement.textContent = error;
+              feedBack.appendChild(errorElement);
+            });
+          } else {
+            form.reset();
+            const messageElement = document.createElement("p");
+            messageElement.textContent = responseText.message;
+            feedBack.appendChild(messageElement);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          const messageElement = document.createElement("p");
+          messageElement.textContent = "Something went wrong: " + error;
+          feedBack.appendChild(messageElement);
+        });
+    }
+
+    form.addEventListener("submit", submitEnqueryForm);
+  });
+})();
