@@ -27,3 +27,4 @@ function closeLightbox() {
   var lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "none";
 }
+
