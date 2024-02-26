@@ -1,3 +1,11 @@
+<?php
+require_once('includes/connect_pdo.php');
+$query = 'SELECT case_title,project_goals,  development_description,design_description, result_description, conclusion_description  FROM case_studies';
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$caseStudy = $stmt->fetch(PDO::FETCH_ASSOC);
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,6 +23,7 @@
       rel="stylesheet"
     />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/ScrollTrigger.js"></script>
     <script src="https://unpkg.com/gsap@3.9.2/dist/gsap.min.js"></script>
@@ -27,8 +36,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/spinner.js"></script>
+
   </head>
   <body>
     <!-- header -->
@@ -44,71 +52,126 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="#about">About Me</a></li>
           <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects.html">Projects</a></li>
-          <li><a href="case-study.html">Case Study</a></li>
+<li><a href="spinner.html?redirect=projects.php">Projects</a></li>
+          <li><a href="spinner.html?redirect=case-study.php">Case Study</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
 
-    <!--  -->
-    <div class="project-container_section" id="projects">
-      <h2 class="">SEE MY PROJECTS!</h2>
-      <div
-        class="project"
-        onclick="showLightbox('path-to-airpods-image.png', 'Additional information about AirPods')"
-      >
-        <img
-          src="images/airpods.png"
-          alt="AirPods"
-          class="animate__animated animate__lightSpeedInRight"
-        />
-        <p>AIRPODS</p>
-      </div>
+    <section class="" id="case-study-body">
+      <!-- case study body -->
+      <h2 class="casestudy_heading"><?php echo $caseStudy['case_title']; ?></h2>
+      <!--  -->
+      <div class="project-steps">
+        <section class="projects-steps__item project-goals">
+          <div class="goalinfo" id="">
+            <h2>Project Goals<br />(web developer and motion designer)</h2>
+            <p>
+            <?php echo $caseStudy['project_goals']; ?>
+              <!-- The main objective is to create an eye-catching website with
+              engaging animations and interactive features. A flawless user
+              experience on all platforms by putting SEO principles, responsive
+              design, and performance optimization into effect. In order to
+              accomplish these objectives and successfully promote the Billy
+              Beer brand, cooperation with the customer and meeting deadlines
+              are essential. -->
+            </p>
+          </div>
+          <div class="goalinfo__image-container" id="projectimg">
+            <img
+              class="animate__animated animate__lightSpeedInRight goalinfo__image"
+              src="images/projectimg.jpg"
+              alt=""
+            />
+          </div>
+        </section>
 
-      <div
-        class="project"
-        onclick="showLightbox('path-to-makeup-image.png', 'Make Up')"
-      >
-        <img
-          src="images/makeup.png"
-          alt="Make Up"
-          class="animate__animated animate__lightSpeedInLeft"
-        />
-        <p>MAKE UP</p>
-      </div>
+        <section class="projects-steps__item development">
+          <div class="goalinfo__image-container">
+            <img
+              class="animate__animated animate__lightSpeedInRight goalinfo__image"
+              src="images/development.png"
+              alt=""
+            />
+          </div>
+          <div class="goalinfo">
+            <h2>Development</h2>
+            <p>  <?php echo $caseStudy['development_description']; ?>
+              <!-- Create a responsive website with dynamic features and animations
+              for Billy Beer, including important sections like products,
+              contact, about, and home. This will increase user engagement.Make
+              sure all users can browse with ease by optimizing loading times
+              and maintaining cross-browser compatibility. -->
+            </p>
+          </div>
+        </section>
 
-      <div
-        class="project"
-        onclick="showLightbox('path-to-billybeer.png', 'BillyBeer')"
-      >
-        <img
-          src="images/billybeer.png"
-          alt="BillyBeer"
-          class="animate__animated animate__lightSpeedInRight"
-        />
-        <p>BILLY BEER</p>
-      </div>
-      <div
-        class="project"
-        onclick="showLightbox('path-to-sports.png', 'Sports')"
-      >
-        <img
-          src="images/sports.png"
-          alt="Sports"
-          class="animate__animated animate__lightSpeedInLeft"
-        />
-        <p>SPORTS</p>
-      </div>
-    </div>
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox">
-      <span class="close" onclick="closeLightbox()">&times;</span>
-      <img class="lightbox-content" id="lightbox-image" />
-      <div id="lightbox-caption"></div>
-      <div id="lightbox-info"></div>
-    </div>
+        <section class="projects-steps__item design">
+          <div class="goalinfo" id="">
+            <h2>Design</h2>
+            <p>  <?php echo $caseStudy['design_description']; ?>
+              <!-- Make eye-catching visual effects and animations for the website,
+              such as movable product displays and logos. Create motion graphics
+              in close coordination with the web development team for
+              promotional videos, making sure that all assets maintain brand
+              consistency. -->
+            </p>
+          </div>
+          <div class="goalinfo__image-container">
+            <img
+              class="animate__animated animate__lightSpeedInRight goalinfo__image"
+              src="images/design-billy.png"
+              alt=""
+            />
+          </div>
+        </section>
 
+        <section class="projects-steps__item result">
+          <div class="goalinfo__image-container">
+            <img
+              class="animate__animated animate__lightSpeedInRight goalinfo__image"
+              src="images/result-billybeer.png"
+              alt=""
+            />
+          </div>
+          <div class="goalinfo">
+            <h2>Result</h2>
+            <p>  <?php echo $caseStudy['result_description']; ?>
+              <!-- The project produced an attractive website with engaging
+              animations and interactive elements that guaranteed a top-notch
+              user experience across all platforms with search engine
+              optimization,responsive design, and performance optimization.
+              Positive user feedback, better search engine rankings, and higher
+              brand visibility were the results of this. Billy Beer’s brand was
+              effectively promoted by the successful teamwork that ensured
+              timely completion and attainment of the project goal. -->
+            </p>
+          </div>
+        </section>
+
+        <section class="projects-steps__item conclusion">
+          <div class="goalinfo" id="">
+            <h2>Conclusion</h2>
+            <p>  <?php echo $caseStudy['conclusion_description']; ?>
+              <!-- The aim is to improve the Billy Beer website by emphasizing
+              attractive animations, smooth integration, and brand consistency.
+              This will guarantee an interesting user experience and powerful
+              brand representation. The web development and motion design teams
+              will work closely together to create a visually attractive
+              platform that successfully conveys Billy Beer’s spirit. -->
+            </p>
+          </div>
+          <div class="goalinfo__image-container">
+            <img
+              class="animate__animated animate__lightSpeedInRight goalinfo__image"
+              src="images/conclusion-billybeer.png"
+              alt=""
+            />
+          </div>
+        </section>
+      </div>
+    </section>
     <!-- footer -->
     <footer class="" id="contact">
       <section class="footer">
@@ -227,5 +290,10 @@
         window.location.href = "spinner.html";
       }
     </script>
+
+<script src="js/main.js"></script>
+<script type="module" src="js/modules.js"></script>
+    <script type="module" src="js/spinner.js"></script>
+
   </body>
 </html>
