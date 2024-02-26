@@ -1,3 +1,10 @@
+<?php
+require_once('includes/connect_pdo.php');
+$query = 'SELECT name, image_path, description, softwares_used, video_url FROM projects';
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,24 +21,25 @@
       href="https://fonts.googleapis.com/css?family=Lora&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/ScrollTrigger.js"></script>
     <script src="https://unpkg.com/gsap@3.9.2/dist/gsap.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
     <script
       src="https://kit.fontawesome.com/your-font-awesome-kit.js"
       crossorigin="anonymous"
     ></script>
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+
   </head>
   <body>
     <!-- header -->
+  
     <nav class="navbar">
       <div class="navbar_container">
         <div class="logo"><img src="images/logo.svg" alt="logo" /></div>
@@ -44,117 +52,35 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="#about">About Me</a></li>
           <li><a href="#skills">Skills</a></li>
-          <li><a href="spinner.html?redirect=projects.php">Projects</a></li>
-          <li><a href="spinner.html?redirect=case-study.php">Case Study</a></li>
+          <li><a href="projects.php">Projects</a></li>
+          <li><a href="case-study.php">Case Study</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
 
-    <!-- section -->
-    <section class="flex" id="hero">
-      <div class="hero-text">
-        <h1 class="animate__animated animate__bounceInLeft">EKAMPREET KAUR</h1>
-        <h2>I'M A GRAPHIC DESIGNER</h2>
-      </div>
-      <div class="hero-img">
-        <img
-          src="images/hero.svg"
-          alt="Hero Image"
-          class="animate__animated animate__flash"
-        />
-      </div>
-    </section>
-    <!-- about -->
-    <h2 class="aboutheading" id="">About Me</h2>
-    <section class="about flex" id="about">
-      <div class="about_kaur">
-        <img
-          class="about__img animate__animated animate__zoomIn"
-          src="images/about.png"
-          alt="KAUR"
-        />
-      </div>
-      <div class="" id="aboutinfo">
-        <p class="animate__animated animate__heartBeat">
-          I'm Ekampreet Kaur from Punjab, India,currently studying Interactive
-          Media Design at Fanshawe College in London, Ontario. Proficient in
-          various software, I'm also active on Instagram, LinkedIn,and
-          Github.<br />Specializing in UI/UX design, I strive to improve digital
-          product interfaces and user experiences websites and mobile apps.
-        </p>
-        <a href="mailto:ekameeraa@gmail.com" class="button">Email</a>
-        <a
-          href="https://www.linkedin.com/in/ekampreet-kaur-231a4724a/"
-          class="button"
-          >LinkedIn</a
-        >
-      </div>
-    </section>
-    <!-- demoreel -->
-    <section class="" id="demo">
-      <h2 class="demo_heading">VIEW MY DEMO REEL!</h2>
-      <div class="video-container">
-        <video controls poster="images/logo.svg">
-          <source src="videos/demo-reel.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </section>
-    <!-- skills -->
-    <div class="skills" id="skills">
-      <h2 class="skills__heading">SKILLS</h2>
-      <div class="skills_categories-container">
-        <section class="skills__category-item">
-          <div class="skills__category-container">
-            <h3 class="skills__category">PERSONAL</h3>
-            <ul class="ul-con skills__category-items">
-              <li class="skills__category-item">Time Management</li>
-              <li>Team Work</li>
-              <li>Problem Solving</li>
-              <li>Strong Organiztional Skills</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="skills__category-item">
-          <h3 class="skills__category">Design</h3>
-          <ul class="ul-con skills__category-items">
-            <li>Branding</li>
-            <li>Typography</li>
-            <li>Image Editing</li>
-            <li>Layouting</li>
-            <li>Color Theory</li>
-            <li>Packaging Design</li>
-          </ul>
-        </section>
-
-        <section class="skills__category-item">
-          <h3 class="skills__category">Software</h3>
-          <ul class="ul-con skills__category-items">
-            <li>After Effects</li>
-            <li>Photoshop</li>
-            <li>Figma</li>
-            <li>InDesign</li>
-            <li>Microsoft Office</li>
-            <li>Illustrator</li>
-          </ul>
-        </section>
-      </div>
-    </div>
-
-    <!-- projects -->
-    <section class="project-container" id="projects">
+    <!--  -->
+    <div class="project-container_section" id="projects">
       <h2 class="">SEE MY PROJECTS!</h2>
-
-      <div class="project_airpods">
+      <?php
+foreach($projects as $project):
+      ?>
+      <div
+        class="project"
+        onclick="showLightbox('<?php echo $project['image_path']; ?>', '<?php echo $project['description']; ?>', '<?php echo $project['softwares_used']; ?>','<?php echo $project['video_url']; ?>')"
+      >
         <img
-          src="images/airpods.png"
-          alt="AirPods"
+          src="<?php echo $project['image_path']; ?>"
+          alt="Air<?php echo $project['description']; ?>Pods"
           class="animate__animated animate__lightSpeedInRight"
         />
-        <p>AIRPODS</p>
+        <p><?php echo $project['description']; ?></p>
       </div>
-      <div class="project_makeup">
+<?php endforeach; ?>
+      <!-- <div
+        class="project"
+        onclick="showLightbox('path-to-makeup-image.png', 'Make Up')"
+      >
         <img
           src="images/makeup.png"
           alt="Make Up"
@@ -163,12 +89,45 @@
         <p>MAKE UP</p>
       </div>
 
-      <!-- effectloader -->
-
-      <a href="spinner.html?redirect=projects.php">
-        <button id="ekam-btn">Check Out Now</button>
-      </a>
-    </section>
+      <div
+        class="project"
+        onclick="showLightbox('path-to-billybeer.png', 'BillyBeer')"
+      >
+        <img
+          src="images/billybeer.png"
+          alt="BillyBeer"
+          class="animate__animated animate__lightSpeedInRight"
+        />
+        <p>BILLY BEER</p>
+      </div>
+      <div
+        class="project"
+        onclick="showLightbox('path-to-sports.png', 'Sports')"
+      >
+        <img
+          src="images/sports.png"
+          alt="Sports"
+          class="animate__animated animate__lightSpeedInLeft"
+        />
+        <p>SPORTS</p>
+      </div> -->
+    </div>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+      <span class="close" onclick="closeLightbox()">&times;</span>
+      <img class="lightbox-content" id="lightbox-image" />
+      <div id="lightbox-caption"></div>
+      <div id="lightbox-info"></div>
+      <div class="lightbox-body">
+      <div>
+        <h4>Softwares Used:</h4><div id="lightbox-softwares-used"></div>
+      </div>  
+      
+        <video id="lightbox-video-url" src="" controls="true"></video>
+      </div>
+      
+    
+    </div>
 
     <!-- footer -->
     <footer class="" id="contact">
@@ -289,8 +248,9 @@
       }
     </script>
 
-    <script src="js/main.js"></script>
-    <script type="module" src="js/modules.js"></script>
-    <script type="module" src="js/modules/spinner.js"></script>
+<script src="js/main.js"></script>
+<script type="module" src="js/modules.js"></script>
+    <script src="js/spinner.js"></script>
+
   </body>
 </html>

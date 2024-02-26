@@ -38,7 +38,6 @@
 }
 
 .about__img {
-  max-width: 700px;
   text-align: center;
   // border-radius: 100px;
   // border-style: dotted;
@@ -78,6 +77,9 @@
     max-width: 600px;
     margin: 15px auto;
   }
+  .about__img {
+    max-width: 700px;
+  }
 }
 
 // skills
@@ -89,7 +91,7 @@
 }
 
 #skills {
-  background-image: url("/images/skills_bg.jpg");
+  background-image: url("../images/skills_bg.jpg");
   filter: brightness(75%);
   background-repeat: no-repeat;
   padding: 70px 10px;
@@ -109,7 +111,7 @@ li {
 .skills_categories-container {
   display: flex;
   flex-direction: row;
-  height: 350px;
+  flex-wrap: wrap;
 }
 
 .skills__category-item {

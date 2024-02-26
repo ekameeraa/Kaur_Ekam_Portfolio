@@ -1,3 +1,11 @@
+<?php
+require_once('includes/connect_pdo.php');
+$query = 'SELECT case_title,project_goals,  development_description,design_description, result_description, conclusion_description  FROM case_studies';
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$caseStudy = $stmt->fetch(PDO::FETCH_ASSOC);
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,21 +22,21 @@
       href="https://fonts.googleapis.com/css?family=Lora&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/ScrollTrigger.js"></script>
     <script src="https://unpkg.com/gsap@3.9.2/dist/gsap.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
     <script
       src="https://kit.fontawesome.com/your-font-awesome-kit.js"
       crossorigin="anonymous"
     ></script>
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+
   </head>
   <body>
     <!-- header -->
@@ -44,132 +52,126 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="#about">About Me</a></li>
           <li><a href="#skills">Skills</a></li>
-          <li><a href="spinner.html?redirect=projects.php">Projects</a></li>
+<li><a href="spinner.html?redirect=projects.php">Projects</a></li>
           <li><a href="spinner.html?redirect=case-study.php">Case Study</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
 
-    <!-- section -->
-    <section class="flex" id="hero">
-      <div class="hero-text">
-        <h1 class="animate__animated animate__bounceInLeft">EKAMPREET KAUR</h1>
-        <h2>I'M A GRAPHIC DESIGNER</h2>
-      </div>
-      <div class="hero-img">
-        <img
-          src="images/hero.svg"
-          alt="Hero Image"
-          class="animate__animated animate__flash"
-        />
-      </div>
-    </section>
-    <!-- about -->
-    <h2 class="aboutheading" id="">About Me</h2>
-    <section class="about flex" id="about">
-      <div class="about_kaur">
-        <img
-          class="about__img animate__animated animate__zoomIn"
-          src="images/about.png"
-          alt="KAUR"
-        />
-      </div>
-      <div class="" id="aboutinfo">
-        <p class="animate__animated animate__heartBeat">
-          I'm Ekampreet Kaur from Punjab, India,currently studying Interactive
-          Media Design at Fanshawe College in London, Ontario. Proficient in
-          various software, I'm also active on Instagram, LinkedIn,and
-          Github.<br />Specializing in UI/UX design, I strive to improve digital
-          product interfaces and user experiences websites and mobile apps.
-        </p>
-        <a href="mailto:ekameeraa@gmail.com" class="button">Email</a>
-        <a
-          href="https://www.linkedin.com/in/ekampreet-kaur-231a4724a/"
-          class="button"
-          >LinkedIn</a
-        >
-      </div>
-    </section>
-    <!-- demoreel -->
-    <section class="" id="demo">
-      <h2 class="demo_heading">VIEW MY DEMO REEL!</h2>
-      <div class="video-container">
-        <video controls poster="images/logo.svg">
-          <source src="videos/demo-reel.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </section>
-    <!-- skills -->
-    <div class="skills" id="skills">
-      <h2 class="skills__heading">SKILLS</h2>
-      <div class="skills_categories-container">
-        <section class="skills__category-item">
-          <div class="skills__category-container">
-            <h3 class="skills__category">PERSONAL</h3>
-            <ul class="ul-con skills__category-items">
-              <li class="skills__category-item">Time Management</li>
-              <li>Team Work</li>
-              <li>Problem Solving</li>
-              <li>Strong Organiztional Skills</li>
-            </ul>
+    <section class="" id="case-study-body">
+      <!-- case study body -->
+      <h2 class="casestudy_heading"><?php echo $caseStudy['case_title']; ?></h2>
+      <!--  -->
+      <div class="project-steps">
+        <section class="projects-steps__item project-goals">
+          <div class="goalinfo" id="">
+            <h2>Project Goals<br />(web developer and motion designer)</h2>
+            <p>
+            <?php echo $caseStudy['project_goals']; ?>
+              <!-- The main objective is to create an eye-catching website with
+              engaging animations and interactive features. A flawless user
+              experience on all platforms by putting SEO principles, responsive
+              design, and performance optimization into effect. In order to
+              accomplish these objectives and successfully promote the Billy
+              Beer brand, cooperation with the customer and meeting deadlines
+              are essential. -->
+            </p>
+          </div>
+          <div class="goalinfo__image-container" id="projectimg">
+            <img
+              class="animate__animated animate__lightSpeedInRight goalinfo__image"
+              src="images/projectimg.jpg"
+              alt=""
+            />
           </div>
         </section>
 
-        <section class="skills__category-item">
-          <h3 class="skills__category">Design</h3>
-          <ul class="ul-con skills__category-items">
-            <li>Branding</li>
-            <li>Typography</li>
-            <li>Image Editing</li>
-            <li>Layouting</li>
-            <li>Color Theory</li>
-            <li>Packaging Design</li>
-          </ul>
+        <section class="projects-steps__item development">
+          <div class="goalinfo__image-container">
+            <img
+              class="animate__animated animate__lightSpeedInRight goalinfo__image"
+              src="images/development.png"
+              alt=""
+            />
+          </div>
+          <div class="goalinfo">
+            <h2>Development</h2>
+            <p>  <?php echo $caseStudy['development_description']; ?>
+              <!-- Create a responsive website with dynamic features and animations
+              for Billy Beer, including important sections like products,
+              contact, about, and home. This will increase user engagement.Make
+              sure all users can browse with ease by optimizing loading times
+              and maintaining cross-browser compatibility. -->
+            </p>
+          </div>
         </section>
 
-        <section class="skills__category-item">
-          <h3 class="skills__category">Software</h3>
-          <ul class="ul-con skills__category-items">
-            <li>After Effects</li>
-            <li>Photoshop</li>
-            <li>Figma</li>
-            <li>InDesign</li>
-            <li>Microsoft Office</li>
-            <li>Illustrator</li>
-          </ul>
+        <section class="projects-steps__item design">
+          <div class="goalinfo" id="">
+            <h2>Design</h2>
+            <p>  <?php echo $caseStudy['design_description']; ?>
+              <!-- Make eye-catching visual effects and animations for the website,
+              such as movable product displays and logos. Create motion graphics
+              in close coordination with the web development team for
+              promotional videos, making sure that all assets maintain brand
+              consistency. -->
+            </p>
+          </div>
+          <div class="goalinfo__image-container">
+            <img
+              class="animate__animated animate__lightSpeedInRight goalinfo__image"
+              src="images/design-billy.png"
+              alt=""
+            />
+          </div>
+        </section>
+
+        <section class="projects-steps__item result">
+          <div class="goalinfo__image-container">
+            <img
+              class="animate__animated animate__lightSpeedInRight goalinfo__image"
+              src="images/result-billybeer.png"
+              alt=""
+            />
+          </div>
+          <div class="goalinfo">
+            <h2>Result</h2>
+            <p>  <?php echo $caseStudy['result_description']; ?>
+              <!-- The project produced an attractive website with engaging
+              animations and interactive elements that guaranteed a top-notch
+              user experience across all platforms with search engine
+              optimization,responsive design, and performance optimization.
+              Positive user feedback, better search engine rankings, and higher
+              brand visibility were the results of this. Billy Beer’s brand was
+              effectively promoted by the successful teamwork that ensured
+              timely completion and attainment of the project goal. -->
+            </p>
+          </div>
+        </section>
+
+        <section class="projects-steps__item conclusion">
+          <div class="goalinfo" id="">
+            <h2>Conclusion</h2>
+            <p>  <?php echo $caseStudy['conclusion_description']; ?>
+              <!-- The aim is to improve the Billy Beer website by emphasizing
+              attractive animations, smooth integration, and brand consistency.
+              This will guarantee an interesting user experience and powerful
+              brand representation. The web development and motion design teams
+              will work closely together to create a visually attractive
+              platform that successfully conveys Billy Beer’s spirit. -->
+            </p>
+          </div>
+          <div class="goalinfo__image-container">
+            <img
+              class="animate__animated animate__lightSpeedInRight goalinfo__image"
+              src="images/conclusion-billybeer.png"
+              alt=""
+            />
+          </div>
         </section>
       </div>
-    </div>
-
-    <!-- projects -->
-    <section class="project-container" id="projects">
-      <h2 class="">SEE MY PROJECTS!</h2>
-
-      <div class="project_airpods">
-        <img
-          src="images/airpods.png"
-          alt="AirPods"
-          class="animate__animated animate__lightSpeedInRight"
-        />
-        <p>AIRPODS</p>
-      </div>
-      <div class="project_makeup">
-        <img
-          src="images/makeup.png"
-          alt="Make Up"
-          class="animate__animated animate__lightSpeedInLeft"
-        />
-        <p>MAKE UP</p>
-      </div>
-
-      <!-- effectloader -->
-
-      <a href="spinner.html?redirect=projects.php">
-        <button id="ekam-btn">Check Out Now</button>
-      </a>
     </section>
-
     <!-- footer -->
     <footer class="" id="contact">
       <section class="footer">
@@ -289,8 +291,9 @@
       }
     </script>
 
-    <script src="js/main.js"></script>
-    <script type="module" src="js/modules.js"></script>
-    <script type="module" src="js/modules/spinner.js"></script>
+<script src="js/main.js"></script>
+<script type="module" src="js/modules.js"></script>
+    <script type="module" src="js/spinner.js"></script>
+
   </body>
 </html>
