@@ -1,3 +1,10 @@
+<?php
+require_once('includes/connect_pdo.php');
+$query = 'SELECT name, image_path, description, softwares_used, video_url FROM projects limit 2';
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -146,22 +153,20 @@
     <section class="project-container" id="projects">
       <h2 class="">SEE MY PROJECTS!</h2>
 
-      <div class="project_airpods">
+      <?php
+foreach($projects as $project):
+      ?>
+      <div
+        class="project"
+      >
         <img
-          src="images/airpods.png"
-          alt="AirPods"
+          src="<?php echo $project['image_path']; ?>"
+          alt="Air<?php echo $project['description']; ?>Pods"
           class="animate__animated animate__lightSpeedInRight"
         />
-        <p>AIRPODS</p>
+        <p><?php echo $project['description']; ?></p>
       </div>
-      <div class="project_makeup">
-        <img
-          src="images/makeup.png"
-          alt="Make Up"
-          class="animate__animated animate__lightSpeedInLeft"
-        />
-        <p>MAKE UP</p>
-      </div>
+<?php endforeach; ?>
 
       <!-- effectloader -->
 
@@ -289,8 +294,8 @@
       }
     </script>
 
-    <script src="js/main.js"></script>
-    <script type="module" src="js/modules.js"></script>
+<script src="js/main.js"></script>
+<script type="module" src="js/modules.js"></script>
     <script type="module" src="js/modules/spinner.js"></script>
   </body>
 </html>

@@ -10,16 +10,27 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 // projects&lightboxes
 
-function showLightbox(imageSrc, imageCaption) {
+function showLightbox(imageSrc, imageCaption, softwaresUsed, videoUrl) {
   var lightbox = document.querySelector(".lightbox");
   var lightboxImage = document.querySelector(".lightbox-content");
   var lightboxCaption = document.querySelector("#lightbox-caption");
   var lightboxInfo = document.querySelector("#lightbox-info");
+  var lightboxSoftwaresUsed = document.querySelector(
+    "#lightbox-softwares-used"
+  );
+  var lightboxvideoUrl = document.querySelector("#lightbox-video-url");
 
   lightbox.style.display = "block";
   lightboxImage.src = imageSrc;
   lightboxCaption.innerHTML = imageCaption;
-  lightboxInfo.innerHTML = additionalInfo;
+  lightboxSoftwaresUsed.innerHTML = softwaresUsed;
+  if (!videoUrl) {
+    lightboxvideoUrl.style.display = "none";
+  } else {
+    lightboxvideoUrl.src = videoUrl;
+    lightboxvideoUrl.removeAttribute("style");
+  }
+  //lightboxInfo.innerHTML = additionalInfo;
 }
 
 // Function to close the lightbox
