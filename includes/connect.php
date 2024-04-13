@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost'; // Your database host (usually 'localhost')
-$username = 'root'; // Your database username
-$password = ''; // Your database password
-$database = 'ek-contact_db'; // Your database name
+$username = 'u802235977_ekam'; // Your database username
+$password = 'Sidhu295'; // Your database password
+$database = 'u802235977_ekam_portfolio'; // Your database name
 
 // Create connection
 $connection = new mysqli($host, $username, $password, $database);

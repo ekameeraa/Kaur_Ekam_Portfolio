@@ -3,9 +3,9 @@
     header("Content-Type: application/json; charset=UTF-8");
 
     $db_host = 'localhost';
-    $db_user = 'root';
-    $db_pass = '';
-    $db_name = 'ek-contact_db';
+    $db_user = 'u802235977_ekam';
+    $db_pass = 'Sidhu295';
+    $db_name = 'u802235977_ekam_portfolio';
 
     $connection = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
     $errors = array();
